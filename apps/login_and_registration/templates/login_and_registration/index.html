@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'login_and_registration/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login_and_registration/skeleton.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login_and_registration/styles.css' %}">
+    <title></title>
+  </head>
+  <body>
+    <label for="">Welcome!</label>
+    {% if messages %}
+      {% for message in messages%}
+        <p> {{ message }} </p>
+      {% endfor %}
+    {% endif %}
+    <label for="login">Login</label>
+    <form class="login" action="{% url 'login_and_registration:login' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+      <input type="submit" name="login" value="Login!">
+    </form>
+    <label for="register">Register</label>
+    <form class="register" action="{% url 'login_and_registration:register' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="first_name" placeholder="First Name">
+      <input type="text" name="last_name" placeholder="Last Name">
+      <input type="text" name="username" placeholder="Username">
+      <input type="text" name="email" placeholder="Email">
+      <input type="password" name="password" placeholder="Password">
+      <p>*Password should be at least 8 characters</p>
+      <input type="password" name="confirm_password" placeholder="Confirm Password">
+      <label for="date">Date Hired:</label>
+      <input type="date" name="birthdate" value="">
+      <input type="submit" name="submit" value="Register!">
+    </form>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wish_list/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'wish_list/skeleton.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'wish_list/styles.css' %}">
+    <title></title>
+  </head>
+  <body>
+    <a href="{% url 'wish_list:index' %}">Home</a>
+    <a href="{% url 'login_and_registration:index' %}">Logout</a>
+    <h1>Create a New Wish List Item</h1>
+    {% if messages %}
+      {% for message in messages%}
+    <p> {{ message }} </p>
+      {% endfor %}
+    {% endif %}
+    <form class="" action="{% url 'wish_list:process' %}" method="post">
+      {% csrf_token %}
+      <label for="item">Item/Product:</label>
+      <input type="text" name="item" placeholder="Item/Product">
+      <input type="submit" name="submit" value="Add">
+    </form>
+  </body>
+</html>
